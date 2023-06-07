@@ -1,12 +1,9 @@
 import account.Account;
-import account.AccountComponent;
 import account.AccountGroup;
 import accountFactory.AccountFactory;
 import accountFactory.EURAccountFactory;
 import accountFactory.InvestmentAccountFactory;
-
-import java.util.ArrayList;
-import java.util.List;
+import user.Client;
 
 public class BankingApplication {
     public static void main(String[] args) {
@@ -25,17 +22,25 @@ public class BankingApplication {
         client.addAccountComponent(account3);
         client.getAccountsInfo();
         System.out.println("*****************");
-        client.changeAccountGroup(account3,4);
+        client.changeAccountGroup(5,4);
         client.getAccountsInfo();
         System.out.println("************************");
+
         AccountGroup accountGroup1 = new AccountGroup(6,"test");
         Account account4 = accountFactory1.createAccount(7,false);
         client.addAccountToGroup(accountGroup1, 4);
         client.addAccountToGroup(account4, 6);
         client.getAccountsInfo();
         System.out.println("****************");
-        client.changeAccountGroup(account4,0 );
+        //client.changeAccountGroup(account4,0 );
+
+        Account account5 = accountFactory1.createAccount(8,false);
+        client.addAccountToGroup(account5, 6);
+        client.changeAccountGroup(6, 0);
+
         client.getAccountsInfo();
+        System.out.println(client.getSizeOfAccountGroup(0));
+
         //client.addAccountComponentToTopGroup(accountGroup);
         //client.addAccountComponentToSpecificGroup(account1, 4);
         //client.addAccountComponentToSpecificGroup(account2, 4);

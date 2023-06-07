@@ -1,6 +1,8 @@
+package user;
+
 import account.AccountComponent;
 import account.AccountGroup;
-import account.AccountTree;
+
 import accountFactory.AccountFactory;
 import accountFactory.TRYAccountFactory;
 
@@ -8,17 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Client extends User{
+public class Client extends User {
     private AccountFactory accountFactory;
-    //private AccountTree accountTree;
+
     private String clientName;
+
+    public AccountComponent getTopAccountGroup() {
+        return topAccountGroup;
+    }
+
     private AccountComponent topAccountGroup;
+
+    public String getClientName() {
+        return clientName;
+    }
+
     public Client(String clientName) {
         this.clientName = clientName;
         createFirstAccount();
     }
     private void createFirstAccount(){
-        //accountTree = new AccountTree();
         topAccountGroup = new AccountGroup(0,"top Account");
         accountFactory = new TRYAccountFactory();
         addAccountComponent(accountFactory.createAccount(1,false));
@@ -42,18 +53,20 @@ public class Client extends User{
         }
     }
 
-    public void changeAccountGroup(AccountComponent account, int newAccountId){
-        AccountGroup currentGroup = findAccountGroupOfAccount(topAccountGroup, account);
+    public void changeAccountGroup(int accountId, int newAccountId){
+        AccountComponent accountComponent = getAccountComponentById(topAccountGroup, accountId);
+        AccountGroup currentGroup = findAccountGroupOfAccount(topAccountGroup, accountComponent);
         AccountComponent newGroup = findAccountGroup(topAccountGroup, newAccountId);
-
+        System.out.println(accountComponent.getId());
         if (currentGroup != null && newGroup != null && newGroup instanceof AccountGroup) {
-            currentGroup.removeAccount(account);
-            ((AccountGroup) newGroup).addAccount(account);
+            currentGroup.removeAccount(accountComponent);
+            ((AccountGroup) newGroup).addAccount(accountComponent);
             System.out.println("Account moved to '" + ((AccountGroup) newGroup).getName() + "'.");
         } else {
             System.out.println("Failed to move account. Please check the group name.");
         }
     }
+
     private AccountComponent findAccountGroup(AccountComponent component, int id) {
         if (component instanceof AccountGroup && ((AccountGroup) component).getId()==(id)) {
             return component;
@@ -86,6 +99,25 @@ public class Client extends User{
         return null;
     }
 
+    public AccountComponent getAccountComponentById(AccountComponent component, int id){
+        if (component.getId() == id) {
+            return component;
+        }
+
+        if (component instanceof AccountGroup) {
+            for (AccountComponent child : ((AccountGroup) component).getAccounts()) {
+                AccountComponent group = getAccountComponentById(child, id);
+                if (group != null) {
+                    return group;
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+
     public void getAccounts(){
         System.out.println(topAccountGroup);
     }
@@ -95,7 +127,7 @@ public class Client extends User{
     }
 
     public void getAccountsInfo() {
-        System.out.println("Client: " + clientName);
+        System.out.println("user.Client: " + clientName);
         displayAccountHierarchy(topAccountGroup, 0);
     }
     private void displayAccountHierarchy(AccountComponent component, int level) {

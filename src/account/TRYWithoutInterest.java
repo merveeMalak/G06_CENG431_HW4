@@ -15,7 +15,9 @@ public class TRYWithoutInterest extends Account{
 
     }
 
-    public void depositMoney(){}
+    public boolean depositMoney(int money){
+        return decreaseValue(money);
+    }
 
     @Override
     public void getAccountInfo() {

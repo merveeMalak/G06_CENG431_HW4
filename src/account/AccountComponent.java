@@ -2,6 +2,7 @@ package account;
 
 public abstract class AccountComponent {
     protected int id;
+
     public AccountComponent(int id){
         this.id = id;
     }
