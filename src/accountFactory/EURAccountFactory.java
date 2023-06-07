@@ -11,11 +11,11 @@ public class EURAccountFactory extends AccountFactory{
     }
 
     @Override
-    public Account createAccount( boolean hasInterest) {
+    public Account createAccount( int id, boolean hasInterest) {
         if (hasInterest) {
-            return new EURWithInterest();
+            return new EURWithInterest(id);
         }
-        return new EURWithoutInterest();
+        return new EURWithoutInterest(id);
     }
 
 

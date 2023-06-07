@@ -16,7 +16,8 @@ public class TRYWithInterest extends Account{
     }
 
     @Override
-    public String toString() {
-        return "Account " + super.id + ": TRY With Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : TRY With Interest");
     }
+
 }

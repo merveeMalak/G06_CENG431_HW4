@@ -5,7 +5,7 @@ import account.USDWithInterest;
 import account.USDWithoutInterest;
 
 
-public class USDAccountFactory extends   AccountFactory {
+public class USDAccountFactory extends  AccountFactory {
 
 
     public USDAccountFactory() {
@@ -13,10 +13,10 @@ public class USDAccountFactory extends   AccountFactory {
     }
 
     @Override
-    public Account createAccount(boolean hasInterest) {
+    public Account createAccount(int id, boolean hasInterest) {
         if (hasInterest) {
-            return new USDWithInterest();
+            return new USDWithInterest(id);
         }
-        return new USDWithoutInterest();
+        return new USDWithoutInterest(id);
     }
 }

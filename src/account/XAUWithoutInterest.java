@@ -16,7 +16,8 @@ public class XAUWithoutInterest extends Account{
     }
 
     @Override
-    public String toString() {
-        return "Account " + super.id + ": XAU Without Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +"- Account : XAU Without Interest");
     }
+
 }

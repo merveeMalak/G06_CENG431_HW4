@@ -61,7 +61,19 @@ public class AccountTree {
         return root;
     }
 
+    public List<AccountComponent> getChildrenOf(int accountId) {
+        TreeNode node = findNode(root, accountId);
+        if (node != null) {
+            List<AccountComponent> children = new ArrayList<>();
+            for (TreeNode child : node.getChildren()) {
+                children.add(child.getAccountComponent());
+            }
+            return children;
+        }
+        return null;
+    }
 }
+
 
 
 

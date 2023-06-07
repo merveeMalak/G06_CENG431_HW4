@@ -13,4 +13,6 @@ public abstract class AccountComponent {
         return id;
     }
 
+    public abstract void getAccountInfo();
+
 }

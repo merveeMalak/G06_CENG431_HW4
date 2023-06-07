@@ -26,6 +26,12 @@ public class AccountGroup extends AccountComponent{
 
     }
 
+    @Override
+    public void getAccountInfo() {
+        System.out.println("id: " + id + " - Account Group: "  +name );
+
+    }
+
     public void addAccount(AccountComponent account){
         accounts.add(account);
     }
@@ -35,19 +41,16 @@ public class AccountGroup extends AccountComponent{
     }
 
 
-    public List<AccountComponent> getAccountGroup(){
+    public List<AccountComponent> getAccounts(){
         return this.accounts;
     }
     public int sizeAccountGroup(){
         return this.accounts.size();
     }
 
-    @Override
-    public String toString() {
-        String accountsInfo =  "Account Group " + name + ":\n";
-        for (AccountComponent account: accounts){
-            accountsInfo += "    " + account.toString() + " \n";
-        }
-        return accountsInfo;
+    public String getName(){
+        return name;
     }
+
+
 }

@@ -10,10 +10,10 @@ public class TRYAccountFactory extends  AccountFactory {
     public TRYAccountFactory() {}
 
     @Override
-    public Account createAccount(boolean hasInterest) {
+    public Account createAccount(int id, boolean hasInterest) {
         if (hasInterest) {
-            return new TRYWithInterest();
+            return new TRYWithInterest(id);
         }
-        return new TRYWithoutInterest();
+        return new TRYWithoutInterest(id);
     }
 }

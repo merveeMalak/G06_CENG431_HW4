@@ -19,7 +19,8 @@ public class Investment extends Account{
 
     public void buyFunds(){}
     @Override
-    public String toString() {
-        return "Account " + super.id + ": Investment";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : Investment");
     }
+
 }

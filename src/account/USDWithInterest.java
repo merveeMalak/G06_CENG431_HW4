@@ -14,9 +14,9 @@ public class USDWithInterest extends Account{
     public void calculateFutureBalance(int day) {
 
     }
-
     @Override
-    public String toString() {
-        return "Account " + super.id + ": USD With Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : USD With Interest");
     }
+
 }

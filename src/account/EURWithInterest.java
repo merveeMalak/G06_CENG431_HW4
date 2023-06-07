@@ -16,7 +16,8 @@ public class EURWithInterest extends Account{
     }
 
     @Override
-    public String toString() {
-        return "Account " + super.id + ": EUR With Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : EUR With Interest");
     }
+
 }
