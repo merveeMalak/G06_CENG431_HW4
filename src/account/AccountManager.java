@@ -28,6 +28,19 @@ public class AccountManager {
     public void displayClients(){
         bank.displayClients();
     }
+
+    public void displayCurrentClientAccounts(){
+        currentClient.getAccountsInfo();
+    }
+    public boolean createAccount(AccountComponent newAccount, int parentId){
+        return currentClient.createAccount(newAccount, parentId);
+    }
+    public boolean checkIsAccountComponent(int id){
+        return (currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id) != null);
+    }
+    public boolean changeAccountGroup(int accountId, int newAccountId){
+        return currentClient.changeAccountGroup(accountId,newAccountId);
+    }
     public void exchange(int firstAccountId, int secondAccountId, double value){
         if (firstAccountId == secondAccountId){
             System.out.println("Account id's must be different");
@@ -38,7 +51,7 @@ public class AccountManager {
         if (account1 == null || account2 == null || (account1 instanceof AccountGroup) || (account2 instanceof AccountGroup) ){
             System.out.println("Please check again inputs");
         }else{
-            
+
         }
 
     }

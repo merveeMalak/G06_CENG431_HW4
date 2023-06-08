@@ -30,9 +30,9 @@ public class Client extends User {
         createFirstAccount();
     }
     private void createFirstAccount(){
-        topAccountGroup = new AccountGroup(0,"top Account");
+        topAccountGroup = new AccountGroup(1,"top Account");
         accountFactory = new TRYAccountFactory();
-        addAccountComponent(accountFactory.createAccount(1,false));
+        addAccountComponent(accountFactory.createAccount(2,false));
     }
 
 
@@ -53,18 +53,29 @@ public class Client extends User {
         }
     }
 
-    public void changeAccountGroup(int accountId, int newAccountId){
+    public boolean createAccount(AccountComponent newAccountComponent, int parentId){
+        if (parentId == 1) {
+                addAccountComponent(newAccountComponent);
+                return true;
+        }
+        AccountComponent accountGroup = getAccountComponentById(topAccountGroup,parentId);
+        if (accountGroup instanceof AccountGroup){
+            addAccountToGroup(newAccountComponent, parentId);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean changeAccountGroup(int accountId, int newAccountId){
         AccountComponent accountComponent = getAccountComponentById(topAccountGroup, accountId);
         AccountGroup currentGroup = findAccountGroupOfAccount(topAccountGroup, accountComponent);
         AccountComponent newGroup = findAccountGroup(topAccountGroup, newAccountId);
-        System.out.println(accountComponent.getId());
-        if (currentGroup != null && newGroup != null && newGroup instanceof AccountGroup) {
+        if (currentGroup != null && newGroup instanceof AccountGroup) {
             currentGroup.removeAccount(accountComponent);
             ((AccountGroup) newGroup).addAccount(accountComponent);
-            System.out.println("Account moved to '" + ((AccountGroup) newGroup).getName() + "'.");
-        } else {
-            System.out.println("Failed to move account. Please check the group name.");
+            return true;
         }
+        return false;
     }
 
     private AccountComponent findAccountGroup(AccountComponent component, int id) {

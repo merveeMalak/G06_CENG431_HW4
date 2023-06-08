@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74f1c2c5-ca07-4355-bb6b-c88f6e8afd4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/BankingSimulation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bank.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BankingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/TreeNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

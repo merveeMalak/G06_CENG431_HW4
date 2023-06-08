@@ -7,7 +7,9 @@ import user.Client;
 
 public class BankingApplication {
     public static void main(String[] args) {
-
+        BankingSimulation bankingSimulation = new BankingSimulation();
+        bankingSimulation.startSimulation();
+/*
         AccountFactory accountFactory = new InvestmentAccountFactory();
         Account account1 = accountFactory.createAccount(2,true);
         AccountFactory accountFactory1 = new EURAccountFactory();
@@ -40,7 +42,7 @@ public class BankingApplication {
 
         client.getAccountsInfo();
         System.out.println(client.getSizeOfAccountGroup(0));
-
+*/
         //client.addAccountComponentToTopGroup(accountGroup);
         //client.addAccountComponentToSpecificGroup(account1, 4);
         //client.addAccountComponentToSpecificGroup(account2, 4);
