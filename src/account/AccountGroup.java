@@ -17,8 +17,8 @@ public class AccountGroup extends AccountComponent{
 
     }
     @Override
-    public void getBalance() {
-
+    public double getBalance() {
+        return 0;
     }
 
     @Override
@@ -50,4 +50,20 @@ public class AccountGroup extends AccountComponent{
         }
         return accountsInfo;
     }
+<<<<<<< Updated upstream
+=======
+
+    public List<Account> getAllAccounts() {
+        List<Account> accounts = new ArrayList<>();
+        for (AccountComponent component : this.getAccounts()) {
+            if (component instanceof Account) {
+                accounts.add((Account) component);
+            } else if (component instanceof AccountGroup) {
+                accounts.addAll(((AccountGroup) component).getAllAccounts());
+            }
+        }
+        return accounts;
+    }
+
+>>>>>>> Stashed changes
 }

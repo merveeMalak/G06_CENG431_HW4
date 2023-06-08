@@ -5,9 +5,11 @@ public class XAUWithInterest extends Account{
         super(id);
     }
 
-    @Override
-    public void getBalance() {
 
+
+    @Override
+    public String getType() {
+        return "XAUWithInterest";
     }
 
     @Override

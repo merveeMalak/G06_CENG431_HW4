@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74f1c2c5-ca07-4355-bb6b-c88f6e8afd4c" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
@@ -41,6 +42,26 @@
       <change afterPath="$PROJECT_DIR$/src/accountFactory/TRYAccountFactory.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/accountFactory/USDAccountFactory.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/accountFactory/XAUAccountFactory.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/AccountComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/AccountGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/EURWithInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/EURWithInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/EURWithoutInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/EURWithoutInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/Investment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/Investment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/TRYWithInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/TRYWithInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/USDWithInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/USDWithInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/USDWithoutInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/USDWithoutInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/XAUWithInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/XAUWithInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/XAUWithoutInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/XAUWithoutInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/EURAccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/EURAccountFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +91,20 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< Updated upstream
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+=======
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/hazim/IdeaProjects/G06_CENG431_HW4",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> Stashed changes
   }
 }]]></component>
   <component name="RecentsManager">
@@ -100,7 +134,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686074226906</updated>
+      <workItem from="1686249249409" duration="11779000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

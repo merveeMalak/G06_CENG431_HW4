@@ -5,9 +5,10 @@ public class USDWithoutInterest extends Account{
         super(id);
     }
 
-    @Override
-    public void getBalance() {
 
+    @Override
+    public String getType() {
+        return "USDWithoutInterest";
     }
 
     @Override

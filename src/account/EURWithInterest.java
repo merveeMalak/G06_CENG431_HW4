@@ -6,8 +6,8 @@ public class EURWithInterest extends Account{
     }
 
     @Override
-    public void getBalance() {
-
+    public String getType() {
+        return "EURWithInterest";
     }
 
     @Override

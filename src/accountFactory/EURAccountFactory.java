@@ -17,6 +17,4 @@ public class EURAccountFactory extends AccountFactory{
         }
         return new EURWithoutInterest();
     }
-
-
 }
