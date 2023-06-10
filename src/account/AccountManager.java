@@ -6,22 +6,19 @@ import user.Client;
 public class AccountManager {
     private Bank bank;
     private Client currentClient;
-
-    public AccountManager() {
+    public AccountManager(){
         this.bank = new Bank();
 
     }
-
-    public boolean createClient(String name) {
-        if (!bank.checkClient(name)) {
+    public boolean createClient(String name){
+        if (!bank.checkClient(name)){
             return false;
         }
         bank.addClient(new Client(name));
         return true;
     }
-
-    public boolean loginClient(String name) {
-        if (!bank.checkClient(name)) {
+    public boolean loginClient(String name){
+        if (!bank.checkClient(name)){
             currentClient = bank.getClient(name);
             return true;
         }
@@ -227,8 +224,21 @@ public class AccountManager {
         }
     }
 
-
     public Client getCurrentClient() {
         return currentClient;
     }
+
+    public void displayCurrentClientAccounts(){
+        currentClient.getAccountsInfo();
+    }
+    public boolean createAccount(AccountComponent newAccount, int parentId){
+        return currentClient.createAccount(newAccount, parentId);
+    }
+    public boolean checkIsAccountComponent(int id){
+        return (currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id) != null);
+    }
+    public boolean changeAccountGroup(int accountId, int newAccountId){
+        return currentClient.changeAccountGroup(accountId,newAccountId);
+    }
+
 }

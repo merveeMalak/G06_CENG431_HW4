@@ -16,7 +16,8 @@ public class USDWithoutInterest extends Account{
 
     }
     @Override
-    public String toString() {
-        return "Account " + super.id + ": USD Without Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : USD Without Interest");
     }
+
 }

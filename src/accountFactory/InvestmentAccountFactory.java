@@ -7,7 +7,7 @@ public class InvestmentAccountFactory extends AccountFactory{
 
 
     @Override
-    public Account createAccount(boolean hasInterest) {
-        return new Investment();
+    public Account createAccount(int id,boolean hasInterest) {
+        return new Investment(id);
     }
 }

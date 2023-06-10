@@ -15,9 +15,9 @@ public class EURWithoutInterest extends Account{
     public void calculateFutureBalance(int day) {
 
     }
-
     @Override
-    public String toString() {
-        return "Account " + super.id + ": EUR Without Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : EUR Without Interest");
     }
+
 }

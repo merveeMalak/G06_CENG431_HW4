@@ -17,12 +17,18 @@ public class AccountGroup extends AccountComponent{
 
     }
     @Override
-    public double getBalance() {
+    public double getValue() {
         return 0;
     }
 
     @Override
     public void calculateFutureBalance(int day) {
+
+    }
+
+    @Override
+    public void getAccountInfo() {
+        System.out.println("id: " + id + " - Account Group: "  +name );
 
     }
 
@@ -35,23 +41,16 @@ public class AccountGroup extends AccountComponent{
     }
 
 
-    public List<AccountComponent> getAccountGroup(){
+    public List<AccountComponent> getAccounts(){
         return this.accounts;
     }
     public int sizeAccountGroup(){
         return this.accounts.size();
     }
 
-    @Override
-    public String toString() {
-        String accountsInfo =  "Account Group " + name + ":\n";
-        for (AccountComponent account: accounts){
-            accountsInfo += "    " + account.toString() + " \n";
-        }
-        return accountsInfo;
+    public String getName(){
+        return name;
     }
-<<<<<<< Updated upstream
-=======
 
     public List<Account> getAllAccounts() {
         List<Account> accounts = new ArrayList<>();
@@ -65,5 +64,4 @@ public class AccountGroup extends AccountComponent{
         return accounts;
     }
 
->>>>>>> Stashed changes
 }

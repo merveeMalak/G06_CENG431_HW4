@@ -1,24 +1,17 @@
 package account;
 
-<<<<<<< Updated upstream
-public abstract class Account extends AccountComponent{
-
-=======
 public abstract class Account extends AccountComponent {
     protected double value;
->>>>>>> Stashed changes
 
     public Account(int id) {
         super(id);
     }
 
-    public double getBalance(){
+    public double getValue() {
         return value;
-    };
+    }
 
 
-<<<<<<< Updated upstream
-=======
     public void setValue(double value) {
         this.value = value;
     }
@@ -36,5 +29,5 @@ public abstract class Account extends AccountComponent {
     }
 
     public abstract String getType();
->>>>>>> Stashed changes
+
 }

@@ -22,12 +22,8 @@ public class Investment extends Account {
     }
 
     @Override
-<<<<<<< Updated upstream
-    public String toString() {
-        return "Account " + super.id + ": Investment";
-=======
     public void getAccountInfo() {
         System.out.println("id: " + super.id + " - Account : Investment");
->>>>>>> Stashed changes
+
     }
 }

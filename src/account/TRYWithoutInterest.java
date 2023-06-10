@@ -16,10 +16,13 @@ public class TRYWithoutInterest extends Account{
 
     }
 
-    public void depositMoney(){}
+    public boolean depositMoney(int money){
+        return decreaseValue(money);
+    }
 
     @Override
-    public String toString() {
-        return "Account " + super.id + ": TRY Without Interest";
+    public void getAccountInfo() {
+        System.out.println("id: " + super.id +" - Account : TRY Without Interest");
     }
+
 }
