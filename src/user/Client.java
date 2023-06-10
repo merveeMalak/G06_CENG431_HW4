@@ -3,13 +3,13 @@ package user;
 import account.AccountComponent;
 import account.AccountGroup;
 import accountFactory.AccountFactory;
-import accountFactory.TRYAccountFactory;
+import accountFactory.CurrencyAccountFactory;
 
 import java.util.List;
 
 
 public class Client extends User {
-    private AccountFactory accountFactory;
+    private CurrencyAccountFactory accountFactory;
 
     private String clientName;
 
@@ -28,14 +28,14 @@ public class Client extends User {
         createFirstAccount();
     }
 
-    private void createFirstAccount(){
-        topAccountGroup = new AccountGroup(1,"top Account");
-        accountFactory = new TRYAccountFactory();
-        addAccountComponent(accountFactory.createAccount(2,false));
+    private void createFirstAccount() {
+        topAccountGroup = new AccountGroup(1, "top Account");
+        accountFactory = new CurrencyAccountFactory();
+        addAccountComponent(accountFactory.createAccount(2, "TRY", false));
     }
 
 
-    public void addAccountComponent(AccountComponent account){
+    public void addAccountComponent(AccountComponent account) {
         if (topAccountGroup instanceof AccountGroup) {
             ((AccountGroup) topAccountGroup).addAccount(account);
         } else {
@@ -52,20 +52,20 @@ public class Client extends User {
         }
     }
 
-    public boolean createAccount(AccountComponent newAccountComponent, int parentId){
+    public boolean createAccount(AccountComponent newAccountComponent, int parentId) {
         if (parentId == 1) {
-                addAccountComponent(newAccountComponent);
-                return true;
+            addAccountComponent(newAccountComponent);
+            return true;
         }
-        AccountComponent accountGroup = getAccountComponentById(topAccountGroup,parentId);
-        if (accountGroup instanceof AccountGroup){
+        AccountComponent accountGroup = getAccountComponentById(topAccountGroup, parentId);
+        if (accountGroup instanceof AccountGroup) {
             addAccountToGroup(newAccountComponent, parentId);
             return true;
         }
         return false;
     }
 
-    public boolean changeAccountGroup(int accountId, int newAccountId){
+    public boolean changeAccountGroup(int accountId, int newAccountId) {
         AccountComponent accountComponent = getAccountComponentById(topAccountGroup, accountId);
         AccountGroup currentGroup = findAccountGroupOfAccount(topAccountGroup, accountComponent);
         AccountComponent newGroup = findAccountGroup(topAccountGroup, newAccountId);
@@ -78,7 +78,7 @@ public class Client extends User {
     }
 
     private AccountComponent findAccountGroup(AccountComponent component, int id) {
-        if (component instanceof AccountGroup && ((AccountGroup) component).getId()==(id)) {
+        if (component instanceof AccountGroup && ((AccountGroup) component).getId() == (id)) {
             return component;
         }
 
@@ -111,7 +111,7 @@ public class Client extends User {
     }
 
 
-    public AccountComponent getAccountComponentById(AccountComponent component, int id){
+    public AccountComponent getAccountComponentById(AccountComponent component, int id) {
         if (component.getId() == id) {
             return component;
         }
@@ -129,11 +129,11 @@ public class Client extends User {
     }
 
 
-    public void getAccounts(){
+    public void getAccounts() {
         System.out.println(topAccountGroup);
     }
 
-    public int getSizeOfAccountGroup(int id){
+    public int getSizeOfAccountGroup(int id) {
         return ((AccountGroup) findAccountGroup(topAccountGroup, id)).sizeAccountGroup();
     }
 

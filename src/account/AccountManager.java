@@ -48,172 +48,55 @@ public class AccountManager {
 
         boolean isSecondInvalid = false;
         boolean isNotEnough = false;
+        boolean isValidForExchange = false;
+        boolean isNeedConverting = false;
 
         AccountComponent account1 = currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), firstAccountId);
         AccountComponent account2 = currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), secondAccountId);
-        if (account1 == null || account2 == null || (account1 instanceof AccountGroup) || (account2 instanceof AccountGroup)) {
+        if (account1 == null || account2 == null || (account1 instanceof AccountGroup) || (account2 instanceof AccountGroup) || (account1 instanceof InvestmentAccount) || (account2 instanceof InvestmentAccount)) {
             System.out.println("Please check your inputs");
         } else {
-            Account castedAccount1 = (Account) account1;
-            Account castedAccount2 = (Account) account2;
-            switch (castedAccount1.getType()) {
-                case "EURWithoutInterest" -> {
-                    EURWithoutInterest eurWithoutInterest1 = (EURWithoutInterest) castedAccount1;
-                    switch (castedAccount2.getType()) {
-                        case "EURWithoutInterest" -> {
-                            EURWithoutInterest eurWithoutInterest2 = (EURWithoutInterest) castedAccount2;
-                            if (eurWithoutInterest1.decreaseValue(value)) {
-                                eurWithoutInterest2.increaseValue(value);
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "TRYWithoutInterest" -> {
-                            TRYWithoutInterest tryWithoutInterest2 = (TRYWithoutInterest) castedAccount2;
-                            if (eurWithoutInterest1.decreaseValue(value)) {
-                                tryWithoutInterest2.increaseValue(value / bank.getCurrentRateTRYtoEUR());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        default -> isSecondInvalid = true;
-                    }
-                }
-                case "TRYWithoutInterest" -> {
-                    TRYWithoutInterest tryWithoutInterest1 = (TRYWithoutInterest) castedAccount1;
-                    switch (castedAccount2.getType()) {
-                        case "EURWithoutInterest" -> {
-                            EURWithoutInterest eurWithoutInterest2 = (EURWithoutInterest) castedAccount2;
-                            if (tryWithoutInterest1.decreaseValue(value)) {
-                                eurWithoutInterest2.increaseValue(value * bank.getCurrentRateTRYtoEUR());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "TRYWithoutInterest" -> {
-                            TRYWithoutInterest tryWithoutInterest2 = (TRYWithoutInterest) castedAccount2;
-                            if (tryWithoutInterest1.decreaseValue(value)) {
-                                tryWithoutInterest2.increaseValue(value);
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "XAUWithoutInterest" -> {
-                            XAUWithoutInterest xauWithoutInterest2 = (XAUWithoutInterest) castedAccount2;
-                            if (tryWithoutInterest1.decreaseValue(value)) {
-                                xauWithoutInterest2.increaseValue(value * bank.getCurrentRateTRYtoXAU());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "USDWithoutInterest" -> {
-                            USDWithoutInterest usdWithoutInterest2 = (USDWithoutInterest) castedAccount2;
-                            if (tryWithoutInterest1.decreaseValue(value)) {
-                                usdWithoutInterest2.increaseValue(value * bank.getCurrentRateTRYtoUSD());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        default -> isSecondInvalid = true;
-                    }
-                }
-                case "USDWithoutInterest" -> {
-                    USDWithoutInterest usdWithoutInterest1 = (USDWithoutInterest) castedAccount1;
-                    switch (castedAccount2.getType()) {
-                        case "USDWithoutInterest" -> {
-                            USDWithoutInterest usdWithoutInterest2 = (USDWithoutInterest) castedAccount2;
-                            if (usdWithoutInterest1.decreaseValue(value)) {
-                                usdWithoutInterest2.increaseValue(value);
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "TRYWithoutInterest" -> {
-                            TRYWithoutInterest tryWithoutInterest2 = (TRYWithoutInterest) castedAccount2;
-                            if (usdWithoutInterest1.decreaseValue(value)) {
-                                tryWithoutInterest2.increaseValue(value / bank.getCurrentRateTRYtoUSD());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        default -> isSecondInvalid = true;
-                    }
-                }
-                case "XAUWithoutInterest" -> {
-                    XAUWithoutInterest xauWithoutInterest1 = (XAUWithoutInterest) castedAccount1;
-                    switch (castedAccount2.getType()) {
-                        case "XAUWithoutInterest" -> {
-                            XAUWithoutInterest xauWithoutInterest2 = (XAUWithoutInterest) castedAccount2;
-                            if (xauWithoutInterest1.decreaseValue(value)) {
-                                xauWithoutInterest2.increaseValue(value);
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        case "TRYWithoutInterest" -> {
-                            TRYWithoutInterest tryWithoutInterest2 = (TRYWithoutInterest) castedAccount2;
-                            if (xauWithoutInterest1.decreaseValue(value)) {
-                                tryWithoutInterest2.increaseValue(value / bank.getCurrentRateTRYtoXAU());
-                            } else {
-                                isNotEnough = true;
-                            }
-                        }
-                        default -> isSecondInvalid = true;
-                    }
+            CurrencyAccount castedAccount1 = (CurrencyAccount) account1;
+            CurrencyAccount castedAccount2 = (CurrencyAccount) account2;
+
+            // IF FIRST ACCOUNT IS WITH INTEREST
+            if (castedAccount1.isHasInterest()) {
+                String typeOfAccount1 = castedAccount1.getType();
+                String typeOfAccount2 = castedAccount2.getType();
+
+                if (typeOfAccount1.equals(typeOfAccount2)) {
+                    // SAME CURRENCY TYPES
+                    isValidForExchange = true;
+                } else {
+                    // DIFFERENT CURRENCY TYPES THIS IS INVALID SITUATION
+                    isSecondInvalid = true;
                 }
 
-                // WITH INTEREST SIDE
+            } else {
+                // IF FIRST ACCOUNT IS WITHOUT INTEREST SO WE NEED TO LOOK TYPES OF THESE ACCOUNTS
+                isValidForExchange = true;
 
-                case "EURWithInterest" -> {
-                    EURWithInterest eurWithInterest1 = (EURWithInterest) castedAccount1;
-                    if (castedAccount2.getType().equals("EURWithoutInterest")) {
-                        EURWithoutInterest eurWithoutInterest2 = (EURWithoutInterest) castedAccount2;
-                        if (eurWithInterest1.decreaseValue(value)) {
-                            eurWithoutInterest2.increaseValue(value);
+                // IF THEIR CURRENCIES NOT EQUAL WE NEED TO CONVERTING
+                isNeedConverting = castedAccount1.getType().equals(castedAccount2.getType());
+            }
+
+            if (isValidForExchange) {
+                if (isNeedConverting) {
+                    double exchangeRate = this.bank.getCurrencyConvertedValue(castedAccount1.getType(), castedAccount2.getType(), value);
+                    if (exchangeRate != -1) {
+                        if (castedAccount1.decreaseValue(value)) {
+                            castedAccount2.increaseValue(value * exchangeRate);
                         } else {
                             isNotEnough = true;
                         }
                     } else {
-                        isSecondInvalid = true;
+                        System.out.println("There is NO any currency rate with these currencies. Please contact your bank.");
                     }
-                }
-                case "USDWithInterest" -> {
-                    USDWithInterest usdWithInterest1 = (USDWithInterest) castedAccount1;
-                    if (castedAccount2.getType().equals("USDWithoutInterest")) {
-                        USDWithoutInterest usdWithoutInterest2 = (USDWithoutInterest) castedAccount2;
-                        if (usdWithInterest1.decreaseValue(value)) {
-                            usdWithoutInterest2.increaseValue(value);
-                        } else {
-                            isNotEnough = true;
-                        }
+                } else {
+                    if (castedAccount1.decreaseValue(value)) {
+                        castedAccount2.increaseValue(value);
                     } else {
-                        isSecondInvalid = true;
-                    }
-                }
-                case "TRYWithInterest" -> {
-                    TRYWithInterest tryWithInterest1 = (TRYWithInterest) castedAccount1;
-                    if (castedAccount2.getType().equals("TRYWithoutInterest")) {
-                        TRYWithoutInterest tryWithoutInterest2 = (TRYWithoutInterest) castedAccount2;
-                        if (tryWithInterest1.decreaseValue(value)) {
-                            tryWithoutInterest2.increaseValue(value);
-                        } else {
-                            isNotEnough = true;
-                        }
-                    } else {
-                        isSecondInvalid = true;
-                    }
-                }
-                case "XAUWithInterest" -> {
-                    XAUWithInterest xauWithInterest1 = (XAUWithInterest) castedAccount1;
-                    if (castedAccount2.getType().equals("XAUWithoutInterest")) {
-                        XAUWithoutInterest xauWithoutInterest = (XAUWithoutInterest) castedAccount2;
-                        if (xauWithInterest1.decreaseValue(value)) {
-                            xauWithoutInterest.increaseValue(value);
-                        } else {
-                            isNotEnough = true;
-                        }
-                    } else {
-                        isSecondInvalid = true;
+                        isNotEnough = true;
                     }
                 }
             }
@@ -222,7 +105,7 @@ public class AccountManager {
                 System.out.println("Please select correct receiver account type for exchange.");
             }
             if (isNotEnough) {
-                System.out.println("Sender account has not enough value.");
+                System.out.println("Sender account has not enough value. Sender accounts value: " + castedAccount1.getValue());
             }
         }
     }
@@ -252,17 +135,27 @@ public class AccountManager {
      *
      * @return Total value in TRY founds in accounts, calculated on a cumulative basis.
      */
-    public double getAllValueInTypeTRY() {
+    public double getAllValueInTypeTRY(int id) {
         double valueInTRY = 0;
+        AccountComponent accountComponent = currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id);
+
+        if (accountComponent instanceof Account){
+            if (accountComponent instanceof CurrencyAccount){
+
+            }
+
+        } else {
+
+
+
+        }
+
+
         for (Account account : ((AccountGroup) currentClient.getTopAccountGroup()).getAllAccounts()) {
-            switch (account.getType()) {
-                case "EURWithInterest", "EURWithoutInterest" ->
-                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoEUR());
-                case "USDWithInterest", "USDWithoutInterest" ->
-                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoUSD());
-                case "XAUWithInterest", "XAUWithoutInterest" ->
-                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoXAU());
-                case "TRYWithInterest", "TRYWithoutInterest" -> valueInTRY += account.getValue();
+            if (account instanceof CurrencyAccount) {
+
+            } else {
+                // TODO INVESTMENT
             }
         }
         return valueInTRY;

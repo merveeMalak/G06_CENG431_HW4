@@ -5,19 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88a32831-91fc-474c-bc10-f10d53a5aa2f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/account/CurrencyAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/account/InvestmentAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accountFactory/CurrencyAccountFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bank/CurrencyRate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurrencyRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CurrencyRate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Fund.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fund.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CurrencyRate.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/AccountGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/Investment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/Investment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/EURWithInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/EURWithoutInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/Investment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/TRYWithInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/USDWithInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/USDWithoutInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/XAUWithInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/XAUWithoutInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/EURAccountFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/TRYAccountFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/USDAccountFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountFactory/XAUAccountFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1686391622811</updated>
-      <workItem from="1686391624998" duration="7064000" />
+      <workItem from="1686391624998" duration="16503000" />
     </task>
     <servers />
   </component>

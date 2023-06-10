@@ -2,12 +2,12 @@ package accountFactory;
 
 import account.Account;
 import account.Investment;
+import account.InvestmentAccount;
 
-public class InvestmentAccountFactory extends AccountFactory{
-
+public class InvestmentAccountFactory extends AccountFactory {
 
     @Override
-    public Account createAccount(int id,boolean hasInterest) {
-        return new Investment(id);
+    public Account createAccount(int id, String currency, boolean hasInterest) {
+        return new InvestmentAccount(id);
     }
 }

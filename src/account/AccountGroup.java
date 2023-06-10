@@ -28,7 +28,7 @@ public class AccountGroup extends AccountComponent{
 
     @Override
     public void getAccountInfo() {
-        System.out.println("id: " + id + " - Account Group: "  +name );
+        System.out.println("Id: " + id + " - Account Group: "  +name );
 
     }
 

@@ -1,7 +1,7 @@
 package account;
 
-public class Investment extends Account {
-    public Investment(int id) {
+public class InvestmentAccount extends Account {
+    public InvestmentAccount(int id) {
         super(id);
     }
 
@@ -17,7 +17,6 @@ public class Investment extends Account {
 
     @Override
     public void getAccountInfo() {
-        System.out.println("id: " + super.id + " - Account : Investment");
-
+        System.out.println("ID: " + super.id + " - Account : Investment");
     }
 }
