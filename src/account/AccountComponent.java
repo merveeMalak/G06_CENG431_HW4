@@ -6,7 +6,7 @@ public abstract class AccountComponent {
     public AccountComponent(int id){
         this.id = id;
     }
-    public abstract double getBalance();
+    public abstract double getValue();
 
     public abstract void calculateFutureBalance(int day);
 
