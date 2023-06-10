@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Bank extends User {
 
+    private int availableFundId;
+    private int availableStockId;
+
     private double currentRateTRYtoEUR;
     private double currentRateTRYtoUSD;
     private double currentRateTRYtoXAU;
@@ -13,15 +16,19 @@ public class Bank extends User {
     private double currentRateUSDtoXAU;
     private List<Client> clients;
 
-    public Bank(){
+    public Bank() {
         this.currentRateTRYtoEUR = 0.04;
         this.currentRateTRYtoUSD = 0.05;
         this.currentRateTRYtoXAU = 0.03;
         this.currentRateEURtoUSD = 0.95;
         this.currentRateEURtoXAU = 0.07;
         this.currentRateUSDtoXAU = 0.36;
+        this.availableStockId = 0;
+        this.availableFundId = 0;
         this.clients = new ArrayList<>();
     }
+
+
     public double getCurrentRateTRYtoEUR() {
         return currentRateTRYtoEUR;
     }
@@ -70,30 +77,34 @@ public class Bank extends User {
         this.currentRateUSDtoXAU = currentRateUSDtoXAU;
     }
 
-    public List<Client> getClients(){
+    public List<Client> getClients() {
         return clients;
     }
-    public boolean checkClient(String name){
-        for (Client client : clients){
-            if (client.getClientName().equals(name)){
+
+    public boolean checkClient(String name) {
+        for (Client client : clients) {
+            if (client.getClientName().equals(name)) {
                 return false;
             }
         }
         return true;
     }
-    public void addClient(Client client){
+
+    public void addClient(Client client) {
         clients.add(client);
     }
-    public Client getClient(String name){
-        for (Client client : clients){
-            if (client.getClientName().equals(name)){
+
+    public Client getClient(String name) {
+        for (Client client : clients) {
+            if (client.getClientName().equals(name)) {
                 return client;
             }
         }
         return null;
     }
-    public void displayClients(){
-        for (Client client: clients){
+
+    public void displayClients() {
+        for (Client client : clients) {
             System.out.println("name: " + client.getClientName());
         }
     }

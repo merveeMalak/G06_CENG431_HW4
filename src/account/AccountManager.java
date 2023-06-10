@@ -6,19 +6,22 @@ import user.Client;
 public class AccountManager {
     private Bank bank;
     private Client currentClient;
-    public AccountManager(){
+
+    public AccountManager() {
         this.bank = new Bank();
 
     }
-    public boolean createClient(String name){
-        if (!bank.checkClient(name)){
+
+    public boolean createClient(String name) {
+        if (!bank.checkClient(name)) {
             return false;
         }
         bank.addClient(new Client(name));
         return true;
     }
-    public boolean loginClient(String name){
-        if (!bank.checkClient(name)){
+
+    public boolean loginClient(String name) {
+        if (!bank.checkClient(name)) {
             currentClient = bank.getClient(name);
             return true;
         }
@@ -29,6 +32,14 @@ public class AccountManager {
         bank.displayClients();
     }
 
+
+    /**
+     * For the exchange in between two account. If there is any error/invalid situation process, it will print the error/invalid situation and the exchange will not happen.
+     *
+     * @param firstAccountId  The account id of which account it will be taken from.
+     * @param secondAccountId The account id of which account it will be transferred to.
+     * @param value           The value of the exchanging process.
+     */
     public void exchange(int firstAccountId, int secondAccountId, double value) {
         if (firstAccountId == secondAccountId) {
             System.out.println("Account ids must be different");
@@ -65,9 +76,7 @@ public class AccountManager {
                                 isNotEnough = true;
                             }
                         }
-                        default -> {
-                            isSecondInvalid = true;
-                        }
+                        default -> isSecondInvalid = true;
                     }
                 }
                 case "TRYWithoutInterest" -> {
@@ -105,9 +114,7 @@ public class AccountManager {
                                 isNotEnough = true;
                             }
                         }
-                        default -> {
-                            isSecondInvalid = true;
-                        }
+                        default -> isSecondInvalid = true;
                     }
                 }
                 case "USDWithoutInterest" -> {
@@ -129,9 +136,7 @@ public class AccountManager {
                                 isNotEnough = true;
                             }
                         }
-                        default -> {
-                            isSecondInvalid = true;
-                        }
+                        default -> isSecondInvalid = true;
                     }
                 }
                 case "XAUWithoutInterest" -> {
@@ -153,9 +158,7 @@ public class AccountManager {
                                 isNotEnough = true;
                             }
                         }
-                        default -> {
-                            isSecondInvalid = true;
-                        }
+                        default -> isSecondInvalid = true;
                     }
                 }
 
@@ -228,17 +231,40 @@ public class AccountManager {
         return currentClient;
     }
 
-    public void displayCurrentClientAccounts(){
+    public void displayCurrentClientAccounts() {
         currentClient.getAccountsInfo();
     }
-    public boolean createAccount(AccountComponent newAccount, int parentId){
+
+    public boolean createAccount(AccountComponent newAccount, int parentId) {
         return currentClient.createAccount(newAccount, parentId);
     }
-    public boolean checkIsAccountComponent(int id){
+
+    public boolean checkIsAccountComponent(int id) {
         return (currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id) != null);
     }
-    public boolean changeAccountGroup(int accountId, int newAccountId){
-        return currentClient.changeAccountGroup(accountId,newAccountId);
+
+    public boolean changeAccountGroup(int accountId, int newAccountId) {
+        return currentClient.changeAccountGroup(accountId, newAccountId);
     }
 
+    /**
+     * To get TRY value from all accounts under a single account group.
+     *
+     * @return Total value in TRY founds in accounts, calculated on a cumulative basis.
+     */
+    public double getAllValueInTypeTRY() {
+        double valueInTRY = 0;
+        for (Account account : ((AccountGroup) currentClient.getTopAccountGroup()).getAllAccounts()) {
+            switch (account.getType()) {
+                case "EURWithInterest", "EURWithoutInterest" ->
+                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoEUR());
+                case "USDWithInterest", "USDWithoutInterest" ->
+                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoUSD());
+                case "XAUWithInterest", "XAUWithoutInterest" ->
+                        valueInTRY += (account.getValue() / bank.getCurrentRateTRYtoXAU());
+                case "TRYWithInterest", "TRYWithoutInterest" -> valueInTRY += account.getValue();
+            }
+        }
+        return valueInTRY;
+    }
 }
