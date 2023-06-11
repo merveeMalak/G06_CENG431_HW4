@@ -70,9 +70,19 @@ public class Client extends User {
         AccountGroup currentGroup = findAccountGroupOfAccount(topAccountGroup, accountComponent);
         AccountComponent newGroup = findAccountGroup(topAccountGroup, newAccountId);
         if (currentGroup != null && newGroup instanceof AccountGroup) {
+            if (!isDescendant(accountComponent,newGroup)) {
+                currentGroup.removeAccount(accountComponent);
+                ((AccountGroup) newGroup).addAccount(accountComponent);
+                return true;
+            }
+            ((AccountGroup) accountComponent).removeAccount(newGroup);
+
+            currentGroup.addAccount(newGroup);
             currentGroup.removeAccount(accountComponent);
+
             ((AccountGroup) newGroup).addAccount(accountComponent);
             return true;
+
         }
         return false;
     }
@@ -128,6 +138,22 @@ public class Client extends User {
         return null;
     }
 
+    private boolean isDescendant(AccountComponent group, AccountComponent account) {
+        if (group == account) {
+            return true;
+        }
+
+        if (group instanceof AccountGroup) {
+            for (AccountComponent child : ((AccountGroup) group).getAccounts()) {
+                if (isDescendant(child, account)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     public void getAccounts() {
         System.out.println(topAccountGroup);
@@ -157,4 +183,5 @@ public class Client extends User {
         }
 
     }
+
 }

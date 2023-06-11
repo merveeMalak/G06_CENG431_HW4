@@ -190,7 +190,11 @@ public class BankingSimulation {
         if (accountId == 0) {
             return;
         }
-        if (!accountManager.checkIsAccountComponent(accountId)) {
+        if (accountId == 1){
+            System.out.println("Top account group is not changed!");
+            return;
+        }
+        if (!accountManager.checkIsAccountComponent(accountId)){
             System.out.println("There is no account or account group with entered id");
             return;
         }
