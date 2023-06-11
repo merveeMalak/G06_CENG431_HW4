@@ -7,15 +7,17 @@ import java.util.Scanner;
 public class BankOperation {
     private AccountManager accountManager;
     private Scanner sc;
-    public BankOperation(AccountManager accountManager){
+
+    public BankOperation(AccountManager accountManager) {
         this.accountManager = accountManager;
-        sc  = new Scanner(System.in);
+        sc = new Scanner(System.in);
     }
 
-    public void operationForBank(){
+    public void operationForBank() {
         int choice;
-        do{
-            System.out.print("""
+        do {
+            System.out.printf("""
+                    Current day: %s
                     0-main menu
                     1-display Stocks
                     2-create Stock
@@ -26,7 +28,7 @@ public class BankOperation {
                     7-change Currency Rates
                     8-change Interest Rates
                     9-pass time
-                    Select an operation you want to do :\s""");
+                    Select an operation you want to do :\s""".formatted(this.accountManager.getCurrentDay()));
             choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
@@ -43,16 +45,18 @@ public class BankOperation {
                 default -> System.out.println("Invalid input");
             }
 
-        }while (choice != 0);
+        } while (choice != 0);
     }
 
 
-    private void displayStocks(){
+    private void displayStocks() {
         accountManager.displayStocks();
     }
-    private void displayFunds(){
+
+    private void displayFunds() {
         accountManager.displayFunds();
     }
+
     private void createStock() {
         System.out.print("Enter stock name (q->main menu): ");
         String name = sc.nextLine();
@@ -65,9 +69,10 @@ public class BankOperation {
         if (value == 0) {
             return;
         }
-        accountManager.createStock(name,value);
+        accountManager.createStock(name, value);
         accountManager.displayStocks();
     }
+
     private void createFund() {
         System.out.print("Enter fund name (q->main menu): ");
         String name = sc.nextLine();
@@ -80,7 +85,7 @@ public class BankOperation {
         if (value == 0) {
             return;
         }
-        accountManager.createFund(name,value);
+        accountManager.createFund(name, value);
         accountManager.displayFunds();
     }
 
@@ -98,14 +103,14 @@ public class BankOperation {
         if (newValue == 0) {
             return;
         }
-        if (accountManager.changeValueStock(id, newValue)){
+        if (accountManager.changeValueStock(id, newValue)) {
             System.out.println("Stock value changed successfully");
             accountManager.displayStocks();
-        }
-        else{
+        } else {
             System.out.println("Stock value changed failed");
         }
     }
+
     private void changeValueFund() {
         accountManager.displayFunds();
         System.out.print("Select id (0->main menu): ");
@@ -120,11 +125,10 @@ public class BankOperation {
         if (newValue == 0) {
             return;
         }
-        if (accountManager.changeValueFund(id, newValue)){
+        if (accountManager.changeValueFund(id, newValue)) {
             System.out.println("Fund value changed successfully");
             accountManager.displayFunds();
-        }
-        else{
+        } else {
             System.out.println("Fund value changed failed");
         }
     }
@@ -147,7 +151,7 @@ public class BankOperation {
         if (newCurrencyRate == 0) {
             return;
         }
-        if (accountManager.setCurrencyRates(firstCurrency,secondCurrency,newCurrencyRate)){
+        if (accountManager.setCurrencyRates(firstCurrency, secondCurrency, newCurrencyRate)) {
             System.out.println("Currency rates are changed successfully");
             accountManager.displayCurrencyRates();
             return;
@@ -155,6 +159,7 @@ public class BankOperation {
         System.out.println("Currency rates are changed failed");
 
     }
+
     private void changeInterestRates() {
         accountManager.displayInterestRates();
         System.out.print("Enter currency type (q->main menu): ");
@@ -169,7 +174,7 @@ public class BankOperation {
         if (newInterestRate == 0) {
             return;
         }
-        if (accountManager.setInterestRates(currency, newInterestRate)){
+        if (accountManager.setInterestRates(currency, newInterestRate)) {
             System.out.println("Currency rates are changed successfully");
             accountManager.displayInterestRates();
             return;
@@ -179,9 +184,13 @@ public class BankOperation {
 
 
     private void passTime() {
+        System.out.print("Enter day (0->main menu): ");
+        int wantedDay = sc.nextInt();
+        sc.nextLine();
+        if (wantedDay == 0) {
+            return;
+        }
+        this.accountManager.passTime(wantedDay);
     }
-
-
-
 
 }

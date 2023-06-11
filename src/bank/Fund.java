@@ -26,6 +26,6 @@ public class Fund {
 
     @Override
     public String toString() {
-        return String.format("ID:%s FUND - %s - Value: %s", this.id, this.name, this.price);
+        return String.format("ID:%s FUND - %s - Value: %s TRY", this.id, this.name, this.price);
     }
 }

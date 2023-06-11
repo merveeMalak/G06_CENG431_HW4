@@ -15,12 +15,14 @@ public class ClientOperation {
     private AccountManager accountManager;
     private int currentId;
     private boolean isLogout;
-    public ClientOperation(AccountManager accountManager){
+
+    public ClientOperation(AccountManager accountManager) {
         this.sc = new Scanner(System.in);
         this.accountManager = accountManager;
         currentId = 3;
         this.isLogout = false;
     }
+
     public void operationsForClient() {
         int choice;
         while (!isLogout) {
@@ -38,6 +40,8 @@ public class ClientOperation {
                     10-sell stock
                     11-sell fund
                     12-display interest rates
+                    13-see expected balance in the future
+                    14-display account/account group balance
                     Select an operation you want to do :\s""");
             choice = sc.nextInt();
             sc.nextLine();
@@ -55,13 +59,13 @@ public class ClientOperation {
                 case 10 -> sellStock();
                 case 11 -> sellFunds();
                 case 12 -> displayInterestRates();
+                case 13 -> seeExpectedBalance();
+                case 14 -> displayGroupBalance();
                 default -> System.out.println("Invalid input");
             }
 
         }
     }
-
-
 
 
     private void displayCurrentClientAccounts() {
@@ -103,16 +107,15 @@ public class ClientOperation {
 
     }
 
-    private AccountComponent createAccountFromFactory(int id){
+    private AccountComponent createAccountFromFactory(int id) {
         AccountFactory accountFactory;
         if (id != 9) {
             accountFactory = new CurrencyAccountFactory();
-        }
-        else {
+        } else {
             accountFactory = new InvestmentAccountFactory();
         }
         String currencyType = (id == 1 || id == 2) ? "TRY" : (id == 3 || id == 4) ? "EUR" : (id == 5 || id == 6) ? "USD" : "XAU";
-        return accountFactory.createAccount(currentId,currencyType, id % 2 == 0);
+        return accountFactory.createAccount(currentId, currencyType, id % 2 == 0);
 
     }
 
@@ -161,11 +164,11 @@ public class ClientOperation {
         if (accountId == 0) {
             return;
         }
-        if (accountId == 1){
+        if (accountId == 1) {
             System.out.println("Top account group is not changed!");
             return;
         }
-        if (!accountManager.checkIsAccountComponent(accountId)){
+        if (!accountManager.checkIsAccountComponent(accountId)) {
             System.out.println("There is no account or account group with entered id");
             return;
         }
@@ -183,7 +186,8 @@ public class ClientOperation {
         }
 
     }
-    private void depositMoney(){
+
+    private void depositMoney() {
         displayCurrentClientAccounts();
         System.out.print("Select account (0->main menu): ");
         int firstAccount = sc.nextInt();
@@ -197,15 +201,15 @@ public class ClientOperation {
         if (exchangeValue == 0) {
             return;
         }
-        if (accountManager.depositMoney(firstAccount, exchangeValue)){
+        if (accountManager.depositMoney(firstAccount, exchangeValue)) {
             System.out.println("Deposit money operation is success");
             displayCurrentClientAccounts();
-        }
-        else{
+        } else {
             System.out.println("Operation is failed!");
         }
     }
-    private void exchange(){
+
+    private void exchange() {
         displayCurrentClientAccounts();
         System.out.print("Select sender account (0->main menu): ");
         int firstAccount = sc.nextInt();
@@ -225,18 +229,19 @@ public class ClientOperation {
         if (exchangeValue == 0) {
             return;
         }
-        accountManager.exchange(firstAccount,secondAccount,exchangeValue);
+        accountManager.exchange(firstAccount, secondAccount, exchangeValue);
         displayCurrentClientAccounts();
     }
-    private void displayCurrencyRates(){
+
+    private void displayCurrencyRates() {
         accountManager.displayCurrencyRates();
     }
 
-    public void setLogout(boolean logout){
+    public void setLogout(boolean logout) {
         this.isLogout = logout;
     }
 
-    private void buyStock(){
+    private void buyStock() {
         displayCurrentClientAccounts();
         System.out.print("Select (TRY) Regular Without Interest Account to buy a stock (0->main menu): ");
         int tryAccount = sc.nextInt();
@@ -257,7 +262,7 @@ public class ClientOperation {
         if (stock == 0) {
             return;
         }
-        if (accountManager.buyStock(stock,account, tryAccount)){
+        if (accountManager.buyStock(stock, account, tryAccount)) {
             System.out.println("Stock is bought successfully");
             displayCurrentClientAccounts();
             return;
@@ -266,7 +271,7 @@ public class ClientOperation {
 
     }
 
-    private void buyFund(){
+    private void buyFund() {
         displayCurrentClientAccounts();
         System.out.print("Select (TRY) Regular Without Interest Account to buy a fund (0->main menu): ");
         int tryAccount = sc.nextInt();
@@ -287,7 +292,7 @@ public class ClientOperation {
         if (fund == 0) {
             return;
         }
-        if (accountManager.buyFund(fund,account,tryAccount)){
+        if (accountManager.buyFund(fund, account, tryAccount)) {
             System.out.println("Funds is bought successfully");
             displayCurrentClientAccounts();
             return;
@@ -295,7 +300,7 @@ public class ClientOperation {
         System.out.println("Fund is bought failed");
     }
 
-    private void sellStock(){
+    private void sellStock() {
         displayCurrentClientAccounts();
         System.out.print("Select (TRY) Regular Without Interest Account to sell a stock (0->main menu): ");
         int tryAccount = sc.nextInt();
@@ -315,14 +320,15 @@ public class ClientOperation {
         if (stock == 0) {
             return;
         }
-        if (accountManager.sellStock(stock,account,tryAccount)){
+        if (accountManager.sellStock(stock, account, tryAccount)) {
             System.out.println("Stock is sold successfully");
             displayCurrentClientAccounts();
             return;
         }
         System.out.println("Stock is sold failed");
     }
-    private void sellFunds(){
+
+    private void sellFunds() {
         displayCurrentClientAccounts();
         System.out.print("Select (TRY) Regular Without Interest Account to sell a fund (0->main menu): ");
         int tryAccount = sc.nextInt();
@@ -342,7 +348,7 @@ public class ClientOperation {
         if (fund == 0) {
             return;
         }
-        if (accountManager.sellFund(fund,account, tryAccount)){
+        if (accountManager.sellFund(fund, account, tryAccount)) {
             System.out.println("Fund is sold successfully");
             displayCurrentClientAccounts();
             return;
@@ -352,5 +358,32 @@ public class ClientOperation {
 
     private void displayInterestRates() {
         accountManager.displayInterestRates();
+    }
+
+    private void seeExpectedBalance() {
+        System.out.print("Select an account/account group to see expected future balance (0->main menu): ");
+        int componentId = sc.nextInt();
+        sc.nextLine();
+        if (componentId == 0) {
+            return;
+        }
+        System.out.print("Enter a day to see expected balance (0->main menu): ");
+        int day = sc.nextInt();
+        sc.nextLine();
+        if (day == 0) {
+            return;
+        }
+        this.accountManager.getExpectedValue(componentId, day);
+
+    }
+
+    private void displayGroupBalance() {
+        System.out.print("Select an account/account group to see balance (0->main menu): ");
+        int componentId = sc.nextInt();
+        sc.nextLine();
+        if (componentId == 0) {
+            return;
+        }
+        System.out.printf("Balance of account/account group: %s\n TRY", this.accountManager.getBalanceOfAccountComponent(componentId));
     }
 }

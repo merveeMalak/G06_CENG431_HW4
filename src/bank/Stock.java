@@ -11,9 +11,10 @@ public class Stock {
         this.price = price;
     }
 
-    public double getId(){
+    public double getId() {
         return this.id;
     }
+
     public double getPrice() {
         return price;
     }
@@ -24,7 +25,7 @@ public class Stock {
 
     @Override
     public String toString() {
-        return String.format("ID:%s STOCK - %s - Value: %s", this.id, this.name, this.price);
+        return String.format("ID:%s STOCK - %s - Value: %s TRY", this.id, this.name, this.price);
     }
 
 

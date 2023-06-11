@@ -19,13 +19,8 @@ public class AccountGroup extends AccountComponent {
     }
 
     @Override
-    public void calculateFutureBalance(int day) {
-
-    }
-
-    @Override
     public void getAccountInfo() {
-        System.out.println("Id: " + id + " - Account Group: " + name);
+        System.out.println("ID: " + id + " - Account Group: " + name);
 
     }
 

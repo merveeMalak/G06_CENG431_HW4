@@ -17,10 +17,6 @@ public class CurrencyAccount extends Account {
         return currencyType;
     }
 
-    @Override
-    public void calculateFutureBalance(int day) {
-
-    }
 
     @Override
     public void getAccountInfo() {
@@ -49,5 +45,10 @@ public class CurrencyAccount extends Account {
             this.value -= value;
             return true;
         }
+    }
+
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }

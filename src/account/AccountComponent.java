@@ -9,8 +9,6 @@ public abstract class AccountComponent {
         this.id = id;
     }
 
-    public abstract void calculateFutureBalance(int day);
-
     public int getId(){
         return id;
     }

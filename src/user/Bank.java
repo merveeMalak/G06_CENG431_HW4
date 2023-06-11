@@ -42,13 +42,14 @@ public class Bank extends User {
         initializeBank();
 
     }
-    private void initializeBank(){
+
+    private void initializeBank() {
         // #######
         // ALL VALUES HAS RANDOM VALUE FOR TESTING, YOU CAN REPLACE THEM WITH 0 OR ANY INITIAL VALUE
         // #######
         for (String currency : this.currencies) {
 
-            InterestRate interestRate = new InterestRate(currency,1);
+            InterestRate interestRate = new InterestRate(currency, 0.05);
             this.interestRates.add(interestRate);
 
             // SAME CURRENCY TO SAME CURRENCY
@@ -65,11 +66,12 @@ public class Bank extends User {
             setCurrencyRate("TRY", "USD", 0.25);
             setCurrencyRate("TRY", "XAU", 0.20);
             setCurrencyRate("EUR", "USD", 0.9);
-            setCurrencyRate("EUR","XAU", 0.70);
-            setCurrencyRate("USD","XAU", 0.85);
+            setCurrencyRate("EUR", "XAU", 0.70);
+            setCurrencyRate("USD", "XAU", 0.85);
 
         }
     }
+
     public List<Client> getClients() {
         return clients;
     }
@@ -115,6 +117,7 @@ public class Bank extends User {
             }
         }
     }
+
     public void displayCurrencyRates() {
         for (CurrencyRate currencyRate :
                 this.currencyRates) {
@@ -205,22 +208,24 @@ public class Bank extends User {
         }
     }
 
-    public boolean setInterestRate(String currency, double interestRateValue){
+    public boolean setInterestRate(String currency, double interestRateValue) {
         InterestRate interestRate = findInterestRate(currency);
-        if (interestRate != null){
+        if (interestRate != null) {
             interestRate.setInterestRate(interestRateValue);
             return true;
         }
         return false;
     }
-    private InterestRate findInterestRate(String currency){
-        for (InterestRate interestRate : interestRates){
-            if (interestRate.getCurrencyType().equals(currency)){
+
+    private InterestRate findInterestRate(String currency) {
+        for (InterestRate interestRate : interestRates) {
+            if (interestRate.getCurrencyType().equals(currency)) {
                 return interestRate;
             }
         }
         return null;
     }
+
     public void createStock(String name, double price) {
         this.stocks.add(new Stock(availableStockId, name, price));
         this.availableStockId++;
@@ -238,6 +243,7 @@ public class Bank extends User {
     public List<Stock> getStocks() {
         return stocks;
     }
+
     public void displayFunds() {
         if (this.funds.size() != 0) {
             for (Fund fund : this.funds) {
@@ -259,7 +265,7 @@ public class Bank extends User {
         }
     }
 
-    public boolean changeStockValue(int id, double newValue){
+    public boolean changeStockValue(int id, double newValue) {
         for (Stock stock : this.stocks) {
             if (id == stock.getId()) {
                 stock.setPrice(newValue);
@@ -271,7 +277,7 @@ public class Bank extends User {
         return false;
     }
 
-    public boolean changeFundValue(int id, double newValue){
+    public boolean changeFundValue(int id, double newValue) {
         for (Fund fund : this.funds) {
             if (id == fund.getId()) {
                 fund.setPrice(newValue);
@@ -282,48 +288,64 @@ public class Bank extends User {
         }
         return false;
     }
-    public boolean sellStock(Client client, int stockId, int accountId, int tryAccount){
+
+    public boolean sellStock(Client client, int stockId, int accountId, int tryAccount) {
         Stock stock = getStockById(stockId);
         if (stock != null) {
-            if (client.buyStock(accountId, stock, tryAccount)) {
-                stocks.remove(stock);
-                return true;
-            }
+            return client.buyStock(accountId, stock, tryAccount);
         }
         return false;
-    }
-    public boolean sellFund(Client client, int fundId, int accountId, int tryAccount){
-        Fund fund = getFundById(fundId);
-        if (fund != null) {
-            if (client.buyFund(accountId, fund, tryAccount)) {
-                funds.remove(fund);
-                return true;
-            }
-        }
-        return false;
-    }
-    public void takeStockBack(Stock stock){
-       stocks.add(stock);
-    }
-    public void takeFundBack(Fund fund){
-        funds.add(fund);
     }
 
-    private Stock getStockById(int id){
-        for (Stock stock: stocks){
-            if (stock.getId() == id){
+    public boolean sellFund(Client client, int fundId, int accountId, int tryAccount) {
+        Fund fund = getFundById(fundId);
+        if (fund != null) {
+            return client.buyFund(accountId, fund, tryAccount);
+        }
+        return false;
+    }
+
+    private Stock getStockById(int id) {
+        for (Stock stock : stocks) {
+            if (stock.getId() == id) {
                 return stock;
             }
         }
         return null;
     }
-    private Fund getFundById(int id){
-        for (Fund fund: funds){
-            if (fund.getId() == id){
+
+    private Fund getFundById(int id) {
+        for (Fund fund : funds) {
+            if (fund.getId() == id) {
                 return fund;
             }
         }
         return null;
+    }
+
+    public void passOneDay() {
+        for (Client client : this.clients) {
+            for (Account account : ((AccountGroup) client.getTopAccountGroup()).getAllAccounts()) {
+                if (account instanceof CurrencyAccount && ((CurrencyAccount) account).isHasInterest()) {
+                    CurrencyAccount currencyAccount = (CurrencyAccount) account;
+                    InterestRate interestRate = findInterestRate(account.getType());
+                    if (interestRate != null) {
+                        currencyAccount.setValue(currencyAccount.getValue() + (currencyAccount.getValue() * interestRate.getInterestRate()));
+                    }
+                }
+            }
+        }
+    }
+
+    public double getPassedTimeValue(double value, int day, String currencyType) {
+        InterestRate interestRate = findInterestRate(currencyType);
+        if (interestRate != null) {
+            for (int i = 0; i < day; i++) {
+                value += (value * interestRate.getInterestRate());
+            }
+            return value;
+        }
+        return -1;
     }
 
 }

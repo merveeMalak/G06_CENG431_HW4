@@ -38,13 +38,8 @@ public class InvestmentAccount extends Account {
     }
 
     @Override
-    public void calculateFutureBalance(int day) {
-
-    }
-
-    @Override
     public void getAccountInfo() {
-        System.out.println("ID: " + super.id + " - Account : Investment\t" + stocksInfo() + "\n" + fundsInfo());
+        System.out.println("ID: " + super.id + " - Account : Investment\t" + stocksInfo() + "\t" + fundsInfo());
     }
 
 
@@ -52,32 +47,39 @@ public class InvestmentAccount extends Account {
         this.funds.add(fund);
     }
 
-    public void removeFund(Fund fund) { this.funds.remove(fund);}
+    public void removeFund(Fund fund) {
+        this.funds.remove(fund);
+    }
 
     public void addStock(Stock stock) {
         this.stocks.add(stock);
     }
-    public void removeStock(Stock stock) { this.stocks.remove(stock);}
 
-    public String stocksInfo(){
-        String info = "";
-        for (Stock stock: stocks){
-            info += stock + "\n";
-        }
-        return info.equals("") ? "" : info.substring(0, info.length()-1) ;
-    }
-    public String fundsInfo(){
-        String info = "";
-        for (Fund fund: funds){
-            info += funds +"\n";
-        }
-        return info.equals("") ? "" : info.substring(0, info.length()-1) ;
+    public void removeStock(Stock stock) {
+        this.stocks.remove(stock);
     }
 
-    public List<Stock> getStocks(){
+    public String stocksInfo() {
+        String info = "";
+        for (Stock stock : stocks) {
+            info += stock + "\t";
+        }
+        return info;
+    }
+
+    public String fundsInfo() {
+        String info = "";
+        for (Fund fund : funds) {
+            info += fund + "\t";
+        }
+        return info;
+    }
+
+    public List<Stock> getStocks() {
         return stocks;
     }
-    public List<Fund> getFunds(){
+
+    public List<Fund> getFunds() {
         return funds;
     }
 }
