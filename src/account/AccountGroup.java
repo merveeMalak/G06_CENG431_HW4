@@ -1,24 +1,21 @@
 package account;
 
+import bank.CurrencyRate;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountGroup extends AccountComponent{
+public class AccountGroup extends AccountComponent {
 
     private String name;
     private List<AccountComponent> accounts;
 
 
-
-    public  AccountGroup(int id, String name){
+    public AccountGroup(int id, String name) {
         super(id);
         this.name = name;
         accounts = new ArrayList<>();
 
-    }
-    @Override
-    public double getValue() {
-        return 0;
     }
 
     @Override
@@ -28,27 +25,28 @@ public class AccountGroup extends AccountComponent{
 
     @Override
     public void getAccountInfo() {
-        System.out.println("Id: " + id + " - Account Group: "  +name );
+        System.out.println("Id: " + id + " - Account Group: " + name);
 
     }
 
-    public void addAccount(AccountComponent account){
+    public void addAccount(AccountComponent account) {
         accounts.add(account);
     }
 
-    public void removeAccount(AccountComponent account){
+    public void removeAccount(AccountComponent account) {
         accounts.remove(account);
     }
 
 
-    public List<AccountComponent> getAccounts(){
+    public List<AccountComponent> getAccounts() {
         return this.accounts;
     }
-    public int sizeAccountGroup(){
+
+    public int sizeAccountGroup() {
         return this.accounts.size();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

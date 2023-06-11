@@ -129,35 +129,4 @@ public class AccountManager {
     public boolean changeAccountGroup(int accountId, int newAccountId) {
         return currentClient.changeAccountGroup(accountId, newAccountId);
     }
-
-    /**
-     * To get TRY value from all accounts under a single account group.
-     *
-     * @return Total value in TRY founds in accounts, calculated on a cumulative basis.
-     */
-    public double getAllValueInTypeTRY(int id) {
-        double valueInTRY = 0;
-        AccountComponent accountComponent = currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id);
-
-        if (accountComponent instanceof Account){
-            if (accountComponent instanceof CurrencyAccount){
-
-            }
-
-        } else {
-
-
-
-        }
-
-
-        for (Account account : ((AccountGroup) currentClient.getTopAccountGroup()).getAllAccounts()) {
-            if (account instanceof CurrencyAccount) {
-
-            } else {
-                // TODO INVESTMENT
-            }
-        }
-        return valueInTRY;
-    }
 }

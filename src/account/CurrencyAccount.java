@@ -1,5 +1,7 @@
 package account;
 
+import bank.CurrencyRate;
+
 public class CurrencyAccount extends Account {
     private String currencyType;
     private boolean hasInterest;
@@ -26,8 +28,14 @@ public class CurrencyAccount extends Account {
 //        System.out.println("id: " + super.id + " - Account : TRY With Interest");
     }
 
+
     public boolean isHasInterest() {
         return hasInterest;
+    }
+
+    @Override
+    public double getValue() {
+        return this.value;
     }
 
     public void increaseValue(double value) {

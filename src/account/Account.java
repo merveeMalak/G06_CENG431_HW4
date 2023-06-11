@@ -7,10 +7,7 @@ public abstract class Account extends AccountComponent {
         super(id);
     }
 
-    public double getValue() {
-        return value;
-    }
-
+    public abstract double getValue();
 
     public void setValue(double value) {
         this.value = value;
