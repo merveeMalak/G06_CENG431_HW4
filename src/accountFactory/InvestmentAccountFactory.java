@@ -1,7 +1,6 @@
 package accountFactory;
 
 import account.Account;
-import account.Investment;
 import account.InvestmentAccount;
 
 public class InvestmentAccountFactory extends AccountFactory {

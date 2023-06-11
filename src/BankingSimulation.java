@@ -123,18 +123,14 @@ public class BankingSimulation {
     }
     private AccountComponent createAccountFromFactory(int id){
         AccountFactory accountFactory;
-        if (id ==1 || id == 2){
-            accountFactory = new TRYAccountFactory();
-        }else if (id == 3 || id == 4) {
-            accountFactory = new EURAccountFactory();
-        } else if (id == 5 || id == 6){
-            accountFactory = new USDAccountFactory();
-        }else if (id == 7 || id == 8){
-            accountFactory = new XAUAccountFactory();
-        }else {
+        if (id != 9) {
+            accountFactory = new CurrencyAccountFactory();
+        }
+        else {
             accountFactory = new InvestmentAccountFactory();
         }
-        return accountFactory.createAccount(currentId, id % 2 == 0);
+        String currencyType = (id == 1 || id == 2) ? "TRY" : (id == 3 || id == 4) ? "EUR" : (id == 5 || id == 6) ? "USD" : "XAU";
+        return accountFactory.createAccount(currentId,currencyType, id % 2 == 0);
 
     }
 
@@ -173,6 +169,10 @@ public class BankingSimulation {
         int accountId = sc.nextInt();
         sc.nextLine();
         if (accountId == 0){
+            return;
+        }
+        if (accountId == 1){
+            System.out.println("Top account group is not changed!");
             return;
         }
         if (!accountManager.checkIsAccountComponent(accountId)){

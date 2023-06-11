@@ -4,31 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88a32831-91fc-474c-bc10-f10d53a5aa2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/account/CurrencyAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/account/InvestmentAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accountFactory/CurrencyAccountFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bank/CurrencyRate.java" afterDir="false" />
+    <list default="true" id="74f1c2c5-ca07-4355-bb6b-c88f6e8afd4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurrencyRate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/EURWithInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/EURWithoutInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/Investment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/TRYWithInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/TRYWithoutInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/USDWithInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/USDWithoutInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/XAUWithInterest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/XAUWithoutInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSimulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/EURAccountFactory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/TRYAccountFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/USDAccountFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/XAUAccountFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,10 +23,24 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2R3GHfaHOqRQYIHdbScvXZjyGKi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="BankingApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BankingApplication" />
@@ -64,7 +58,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="88a32831-91fc-474c-bc10-f10d53a5aa2f" name="Changes" comment="" />
+      <changelist id="74f1c2c5-ca07-4355-bb6b-c88f6e8afd4c" name="Changes" comment="" />
       <created>1686391622811</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
