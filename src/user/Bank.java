@@ -31,21 +31,24 @@ public class Bank extends User {
     }
 
     public Bank() {
-        this.availableStockId = 0;
-        this.availableFundId = 0;
+        this.availableStockId = 1;
+        this.availableFundId = 1;
         this.funds = new ArrayList<>();
         this.stocks = new ArrayList<>();
         this.clients = new ArrayList<>();
         this.currencies = new ArrayList<>(Arrays.asList("EUR", "TRY", "XAU", "USD"));
         this.interestRates = new ArrayList<>();
         this.currencyRates = new ArrayList<>();
+        initializeBank();
 
+    }
+    private void initializeBank(){
         // #######
         // ALL VALUES HAS RANDOM VALUE FOR TESTING, YOU CAN REPLACE THEM WITH 0 OR ANY INITIAL VALUE
         // #######
         for (String currency : this.currencies) {
 
-            InterestRate interestRate = new InterestRate(currency, getRandomDoubleValue());
+            InterestRate interestRate = new InterestRate(currency,1);
             this.interestRates.add(interestRate);
 
             // SAME CURRENCY TO SAME CURRENCY
@@ -54,13 +57,19 @@ public class Bank extends User {
 
             for (String currency2 : this.currencies) {
                 if (!currency.equals(currency2)) {
-                    CurrencyRate innerCurrencyRate = new CurrencyRate(currency, currency2, getRandomDoubleValue());
+                    CurrencyRate innerCurrencyRate = new CurrencyRate(currency, currency2, 0);
                     this.currencyRates.add(innerCurrencyRate);
                 }
             }
+            setCurrencyRate("TRY", "EUR", 0.24);
+            setCurrencyRate("TRY", "USD", 0.25);
+            setCurrencyRate("TRY", "XAU", 0.20);
+            setCurrencyRate("EUR", "USD", 0.9);
+            setCurrencyRate("EUR","XAU", 0.70);
+            setCurrencyRate("USD","XAU", 0.85);
+
         }
     }
-
     public List<Client> getClients() {
         return clients;
     }
@@ -106,11 +115,17 @@ public class Bank extends User {
             }
         }
     }
+    public void displayCurrencyRates() {
+        for (CurrencyRate currencyRate :
+                this.currencyRates) {
+            System.out.println(currencyRate);
+        }
+    }
 
     public void displayInterestRate() {
         for (InterestRate interestRate :
                 this.interestRates) {
-            System.out.printf("%s Interest Rate: %s", interestRate.getCurrencyType(), interestRate.getInterestRate());
+            System.out.printf("%s Interest Rate: %s\n", interestRate.getCurrencyType(), interestRate.getInterestRate());
         }
     }
 
@@ -123,9 +138,8 @@ public class Bank extends User {
      * @return {@code CurrencyRate/null}
      */
     public CurrencyRate findCurrencyRate(String currencyType1, String currencyType2) {
-        ArrayList<String> currencies = new ArrayList<>(Arrays.asList(currencyType1, currencyType2));
         for (CurrencyRate currencyRate : this.currencyRates) {
-            if (currencies.equals(currencyRate.getCurrencies())) {
+            if (currencyType1.equals(currencyRate.getCurrencyType1()) && currencyType2.equals(currencyRate.getCurrencyType2())) {
                 return currencyRate;
             }
         }
@@ -179,9 +193,11 @@ public class Bank extends User {
         if (currencyType1.equals(currencyType2)) {
             return false;
         } else {
-            CurrencyRate wantedCurrencyRate = findCurrencyRate(currencyType1, currencyType2);
-            if (wantedCurrencyRate != null) {
-                wantedCurrencyRate.setExchangeRate(value);
+            CurrencyRate wantedCurrencyRateFirst = findCurrencyRate(currencyType1, currencyType2);
+            CurrencyRate wantedCurrencyRateSecond = findCurrencyRate(currencyType2, currencyType1);
+            if (wantedCurrencyRateFirst != null && wantedCurrencyRateSecond != null) {
+                wantedCurrencyRateFirst.setExchangeRate(value);
+                wantedCurrencyRateSecond.setExchangeRate(1 / value);
                 return true;
             } else {
                 return false;
@@ -189,7 +205,22 @@ public class Bank extends User {
         }
     }
 
-
+    public boolean setInterestRate(String currency, double interestRateValue){
+        InterestRate interestRate = findInterestRate(currency);
+        if (interestRate != null){
+            interestRate.setInterestRate(interestRateValue);
+            return true;
+        }
+        return false;
+    }
+    private InterestRate findInterestRate(String currency){
+        for (InterestRate interestRate : interestRates){
+            if (interestRate.getCurrencyType().equals(currency)){
+                return interestRate;
+            }
+        }
+        return null;
+    }
     public void createStock(String name, double price) {
         this.stocks.add(new Stock(availableStockId, name, price));
         this.availableStockId++;
@@ -207,4 +238,92 @@ public class Bank extends User {
     public List<Stock> getStocks() {
         return stocks;
     }
+    public void displayFunds() {
+        if (this.funds.size() != 0) {
+            for (Fund fund : this.funds) {
+                System.out.println(fund);
+            }
+        } else {
+            System.out.println("Empty Funds");
+        }
+
+    }
+
+    public void displayStocks() {
+        if (this.stocks.size() != 0) {
+            for (Stock stock : this.stocks) {
+                System.out.println(stock);
+            }
+        } else {
+            System.out.println("Empty Stocks");
+        }
+    }
+
+    public boolean changeStockValue(int id, double newValue){
+        for (Stock stock : this.stocks) {
+            if (id == stock.getId()) {
+                stock.setPrice(newValue);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean changeFundValue(int id, double newValue){
+        for (Fund fund : this.funds) {
+            if (id == fund.getId()) {
+                fund.setPrice(newValue);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+    public boolean sellStock(Client client, int stockId, int accountId, int tryAccount){
+        Stock stock = getStockById(stockId);
+        if (stock != null) {
+            if (client.buyStock(accountId, stock, tryAccount)) {
+                stocks.remove(stock);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean sellFund(Client client, int fundId, int accountId, int tryAccount){
+        Fund fund = getFundById(fundId);
+        if (fund != null) {
+            if (client.buyFund(accountId, fund, tryAccount)) {
+                funds.remove(fund);
+                return true;
+            }
+        }
+        return false;
+    }
+    public void takeStockBack(Stock stock){
+       stocks.add(stock);
+    }
+    public void takeFundBack(Fund fund){
+        funds.add(fund);
+    }
+
+    private Stock getStockById(int id){
+        for (Stock stock: stocks){
+            if (stock.getId() == id){
+                return stock;
+            }
+        }
+        return null;
+    }
+    private Fund getFundById(int id){
+        for (Fund fund: funds){
+            if (fund.getId() == id){
+                return fund;
+            }
+        }
+        return null;
+    }
+
 }

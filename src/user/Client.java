@@ -2,8 +2,12 @@ package user;
 
 import account.AccountComponent;
 import account.AccountGroup;
+import account.CurrencyAccount;
+import account.InvestmentAccount;
 import accountFactory.AccountFactory;
 import accountFactory.CurrencyAccountFactory;
+import bank.Fund;
+import bank.Stock;
 
 import java.util.List;
 
@@ -184,4 +188,57 @@ public class Client extends User {
 
     }
 
+    public boolean buyStock(int accountId, Stock stock, int tryAccountId){
+        AccountComponent tryAccount = getAccountComponentById(topAccountGroup, tryAccountId);
+        AccountComponent account = getAccountComponentById(topAccountGroup, accountId);
+        if (account instanceof InvestmentAccount && tryAccount instanceof CurrencyAccount && !((CurrencyAccount) tryAccount).isHasInterest()){
+            if (((CurrencyAccount) tryAccount).decreaseValue(stock.getPrice())){
+                ((InvestmentAccount) account).addStock(stock);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean buyFund(int accountId, Fund fund, int tryAccountId){
+        AccountComponent tryAccount = getAccountComponentById(topAccountGroup, tryAccountId);
+        AccountComponent account = getAccountComponentById(topAccountGroup, accountId);
+        if (account instanceof InvestmentAccount && tryAccount instanceof CurrencyAccount && !((CurrencyAccount) tryAccount).isHasInterest()){
+            if (((CurrencyAccount) tryAccount).decreaseValue(fund.getPrice())){
+                ((InvestmentAccount) account).addFund(fund);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Stock sellStock(int accountId, int stockId, int tryAccountId){
+        AccountComponent tryAccount = getAccountComponentById(topAccountGroup, tryAccountId);
+        AccountComponent account = getAccountComponentById(topAccountGroup, accountId);
+        if (account instanceof InvestmentAccount && tryAccount instanceof CurrencyAccount && !((CurrencyAccount) tryAccount).isHasInterest()){
+            for (Stock stock :((InvestmentAccount) account).getStocks()){
+                if (stock.getId() == stockId){
+                    ((InvestmentAccount) account).removeStock(stock);
+                    ((CurrencyAccount) tryAccount).increaseValue(stock.getPrice());
+                    return stock;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Fund sellFund(int accountId, int fundId, int tryAccountId){
+        AccountComponent account = getAccountComponentById(topAccountGroup, accountId);
+        AccountComponent tryAccount = getAccountComponentById(topAccountGroup, tryAccountId);
+        if (account instanceof InvestmentAccount && tryAccount instanceof CurrencyAccount && !((CurrencyAccount) tryAccount).isHasInterest()){
+            for (Fund fund :((InvestmentAccount) account).getFunds()){
+                if (fund.getId() == fundId){
+                    ((InvestmentAccount) account).removeFund(fund);
+                    ((CurrencyAccount) tryAccount).increaseValue(fund.getPrice());
+                    return fund;
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -11,7 +11,21 @@ public class Fund {
         this.price = price;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID:%s FUND - %s - Value: %s", this.id, this.name, this.price);
     }
 }

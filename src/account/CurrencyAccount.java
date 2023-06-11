@@ -24,7 +24,7 @@ public class CurrencyAccount extends Account {
 
     @Override
     public void getAccountInfo() {
-        System.out.printf("ID: %s - Account: %s %s Interest\n", super.getId(), this.currencyType, this.hasInterest ? "With" : "Without");
+        System.out.printf("ID: %s - Account: %s %s Interest - Account Value: %s\n", super.getId(), this.currencyType, this.hasInterest ? "With" : "Without", this.value);
 //        System.out.println("id: " + super.id + " - Account : TRY With Interest");
     }
 

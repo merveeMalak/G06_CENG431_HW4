@@ -41,4 +41,9 @@ public class CurrencyRate {
     public void setExchangeRate(double exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s -> %s Rate: %s", this.currencyType1, this.currencyType2, this.exchangeRate);
+    }
 }

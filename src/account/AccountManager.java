@@ -1,5 +1,7 @@
 package account;
 
+import bank.Fund;
+import bank.Stock;
 import user.Bank;
 import user.Client;
 
@@ -73,19 +75,32 @@ public class AccountManager {
                 }
 
             } else {
-                // IF FIRST ACCOUNT IS WITHOUT INTEREST SO WE NEED TO LOOK TYPES OF THESE ACCOUNTS
-                isValidForExchange = true;
+                if (!castedAccount2.isHasInterest()) {
+// IF FIRST ACCOUNT IS WITHOUT INTEREST SO WE NEED TO LOOK TYPES OF THESE ACCOUNTS
+                    isValidForExchange = true;
 
-                // IF THEIR CURRENCIES NOT EQUAL WE NEED TO CONVERTING
-                isNeedConverting = castedAccount1.getType().equals(castedAccount2.getType());
+// IF THEIR CURRENCIES NOT EQUAL WE NEED TO CONVERTING
+                    isNeedConverting = castedAccount1.getType().equals(castedAccount2.getType());
+                } else {
+                    String typeOfAccount1 = castedAccount1.getType();
+                    String typeOfAccount2 = castedAccount2.getType();
+
+                    if (typeOfAccount1.equals(typeOfAccount2)) {
+// SAME CURRENCY TYPES
+                        isValidForExchange = true;
+                    } else {
+// DIFFERENT CURRENCY TYPES THIS IS INVALID SITUATION
+                        isSecondInvalid = true;
+                    }
+                }
             }
 
             if (isValidForExchange) {
                 if (isNeedConverting) {
-                    double exchangeRate = this.bank.getCurrencyConvertedValue(castedAccount1.getType(), castedAccount2.getType(), value);
-                    if (exchangeRate != -1) {
+                    double convertedValue = this.bank.getCurrencyConvertedValue(castedAccount1.getType(), castedAccount2.getType(), value);
+                    if (convertedValue != -1) {
                         if (castedAccount1.decreaseValue(value)) {
-                            castedAccount2.increaseValue(value * exchangeRate);
+                            castedAccount2.increaseValue(convertedValue);
                         } else {
                             isNotEnough = true;
                         }
@@ -129,4 +144,71 @@ public class AccountManager {
     public boolean changeAccountGroup(int accountId, int newAccountId) {
         return currentClient.changeAccountGroup(accountId, newAccountId);
     }
+    public boolean depositMoney(int id,double depositValue){
+        AccountComponent component = currentClient.getAccountComponentById(currentClient.getTopAccountGroup(), id);
+        if (component instanceof CurrencyAccount && ((CurrencyAccount) component).getType().equals("TRY") && !((CurrencyAccount) component).isHasInterest()){
+            ((CurrencyAccount) component).increaseValue(depositValue);
+            return true;
+        }
+        return false;
+    }
+    public void displayCurrencyRates(){
+        bank.displayCurrencyRates();
+    }
+
+    public void createStock(String name, double value){
+        bank.createStock(name,value);
+    }
+    public void createFund(String name, double value){
+        bank.createFund(name,value);
+    }
+    public void displayStocks(){
+        bank.displayStocks();
+    }
+    public void displayFunds(){
+        bank.displayFunds();
+    }
+    public boolean changeValueStock(int id, double newValue){
+        return bank.changeStockValue(id, newValue);
+    }
+
+    public boolean changeValueFund(int id, double newValue){
+        return bank.changeFundValue(id, newValue);
+    }
+
+    public boolean setCurrencyRates(String currencyType1, String currencyType2, double value ){
+        return bank.setCurrencyRate(currencyType1, currencyType2, value);
+    }
+
+    public boolean setInterestRates(String currency, double value){
+        return bank.setInterestRate(currency, value);
+    }
+
+    public boolean buyStock(int stockId, int accountId, int tryAccount){
+        return bank.sellStock(currentClient, stockId, accountId, tryAccount);
+    }
+    public boolean buyFund(int fundId, int accountId, int tryAccount){
+        return bank.sellFund(currentClient, fundId, accountId, tryAccount);
+    }
+
+    public boolean sellStock(int stockId, int accountId ,int tryAccount){
+        Stock stock = currentClient.sellStock(accountId, stockId, tryAccount);
+        if (stock != null){
+            bank.takeStockBack(stock);
+            return true;
+        }
+        return false;
+    }
+    public boolean sellFund(int fundId, int accountId, int tryAccount){
+        Fund fund = currentClient.sellFund(accountId, fundId,tryAccount);
+        if (fund != null){
+            bank.takeFundBack(fund);
+            return true;
+        }
+        return false;
+    }
+    public void displayInterestRates(){
+        bank.displayInterestRate();
+    }
+
 }

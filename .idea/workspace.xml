@@ -4,21 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88a32831-91fc-474c-bc10-f10d53a5aa2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/bank/InterestRate.java" afterDir="false" />
+    <list default="true" id="74f1c2c5-ca07-4355-bb6b-c88f6e8afd4c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/simulation/BankOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simulation/ClientOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSimulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Fund.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/Fund.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/AccountGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation/BankingSimulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/AccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/AccountManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/CurrencyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/CurrencyAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/account/InvestmentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/InvestmentAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/AccountFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountFactory/InvestmentAccountFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank/CurrencyRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/CurrencyRate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank/Fund.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/Fund.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank/InterestRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/InterestRate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bank/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bank/Stock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +36,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2R3IvMhoZqjaq35bpBTN3f4KCbP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BankingApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BankingApplication" />

@@ -44,7 +44,7 @@ public class InvestmentAccount extends Account {
 
     @Override
     public void getAccountInfo() {
-        System.out.println("ID: " + super.id + " - Account : Investment");
+        System.out.println("ID: " + super.id + " - Account : Investment\t" + stocksInfo() + "\n" + fundsInfo());
     }
 
 
@@ -52,8 +52,32 @@ public class InvestmentAccount extends Account {
         this.funds.add(fund);
     }
 
+    public void removeFund(Fund fund) { this.funds.remove(fund);}
+
     public void addStock(Stock stock) {
         this.stocks.add(stock);
     }
+    public void removeStock(Stock stock) { this.stocks.remove(stock);}
 
+    public String stocksInfo(){
+        String info = "";
+        for (Stock stock: stocks){
+            info += stock + "\n";
+        }
+        return info.equals("") ? "" : info.substring(0, info.length()-1) ;
+    }
+    public String fundsInfo(){
+        String info = "";
+        for (Fund fund: funds){
+            info += funds +"\n";
+        }
+        return info.equals("") ? "" : info.substring(0, info.length()-1) ;
+    }
+
+    public List<Stock> getStocks(){
+        return stocks;
+    }
+    public List<Fund> getFunds(){
+        return funds;
+    }
 }
